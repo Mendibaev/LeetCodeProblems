@@ -9,13 +9,13 @@ import UIKit
 //    let count = nums.count
 //    var hashTable = [Int: Int]()
 //    var majorityElement = 0
-//    
+//
 //    let uniqueNumbers = Set(nums)
-//    
+//
 //    uniqueNumbers.forEach { uniqueNumber in
 //        hashTable[uniqueNumber] = 0
 //    }
-//    
+//
 //    for element in nums {
 //        if let count = hashTable[element] {
 //            hashTable[element] = count + 1
@@ -23,7 +23,7 @@ import UIKit
 //            hashTable[element] = 1
 //        }
 //    }
-//    
+//
 //    for value in hashTable.values {
 //        if value > count / 2 {
 //            if let key = hashTable.first(where: { $0.value == value})?.key {
@@ -43,11 +43,11 @@ import UIKit
 // Second solution
 
 //func findMajorityElement(_ nums: [Int]) -> Int {
-//    
+//
 //    var dict = [Int : Int]()
 //    guard nums.count == 0 else { return 0 }
 //    guard nums.count == 1 else { return nums[0] }
-//    
+//
 //    for num in nums {
 //        if let value = dict[num] {
 //            dict[num] = value + 1
@@ -55,13 +55,13 @@ import UIKit
 //            dict[num] = 1
 //        }
 //    }
-//    
+//
 //    for key in dict.keys {
 //        if let value = dict[key], value > nums.count / 2 {
 //            return key
 //        }
 //    }
-//    
+//
 //    return 0
 //}
 
@@ -74,7 +74,7 @@ import UIKit
 //func findMajorityElement(_ nums: [Int]) -> [Int] {
 //    var dict = [Int : Int]()
 //    var elements = [Int]()
-//    
+//
 //    for num in nums {
 //        if let value = dict[num] {
 //            dict[num] = value + 1
@@ -82,7 +82,7 @@ import UIKit
 //            dict[num] = 1
 //        }
 //    }
-//    
+//
 //    for key in dict.keys {
 //        if let value = dict[key], value > nums.count / 3 {
 //            elements.append(key)
@@ -104,7 +104,7 @@ import UIKit
 //// https://leetcode.com/problems/first-missing-positive/description/
 //
 //func findFirstPositive(_ nums: [Int]) -> Int {
-//    
+//
 //    for i in 1...nums.count {
 //        for num in nums {
 //            if i != num {
@@ -124,11 +124,11 @@ import UIKit
 
 
 //func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
-//    
+//
 //    var resultArray = [Int]()
 //    var editedNums1 = Set(nums1)
 //    var editedNums2 = Set(nums2)
-//    
+//
 //    for num1 in editedNums1 {
 //        for num2 in editedNums2 {
 //            if num1 == num2 {
@@ -152,7 +152,7 @@ import UIKit
 //    var resultArray = [Int]()
 //    var editedNums1 = Set(nums1)
 //    var editedNums2 = Set(nums2)
-//    
+//
 //    resultArray = editedNums1.filter { num1 in
 //        editedNums2.contains(num1)
 //    }
@@ -169,7 +169,7 @@ import UIKit
 /// https://leetcode.com/problems/intersection-of-two-arrays-ii/description/
 
 //func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
-//    
+//
 //    var resultArray = [Int]()
 //    var dict1 = [Int: Int]()
 //    var dict2 = [Int: Int]()
@@ -181,7 +181,7 @@ import UIKit
 //            dict1[num] = 1
 //        }
 //    }
-//    
+//
 //    nums2.map { num in
 //        if let value = dict2[num] {
 //            dict2[num] = value + 1
@@ -189,7 +189,7 @@ import UIKit
 //            dict2[num] = 1
 //        }
 //    }
-//    
+//
 //    for (key1, value1) in dict1 {
 //        for (key2, value2) in dict2 {
 //            if key1 == key2 {
@@ -199,7 +199,7 @@ import UIKit
 //            }
 //        }
 //    }
-//    
+//
 //    return resultArray
 //}
 //
@@ -216,7 +216,7 @@ import UIKit
 //
 //    var dict = [Int : Int]()
 //    var answer: Bool = false
-//    
+//
 //    nums.map { num in
 //        if let value = dict[num] {
 //            dict[num] = value + 1
@@ -238,31 +238,52 @@ import UIKit
 //var nums = [1,2,3,1]
 //containsDuplicate(nums)
 
+/// 217. Contains Duplicate II (not solved)
+/// https://leetcode.com/problems/contains-duplicate-ii/description/
 
-func findMax(_ nums: [Int], _ k: Int) -> Int {
-    
-    var dict = [Int : Int]()
-    var arr = [Int]()
-    
-    nums.map { num in
-        if let value = dict[num] {
-            dict[num] = value + 1
-        } else {
-            dict[num] = 1
+
+//func findMax(_ nums: [Int], _ k: Int) -> Int {
+//
+//    var dict = [Int : Int]()
+//    var arr = [Int]()
+//
+//    nums.map { num in
+//        if let value = dict[num] {
+//            dict[num] = value + 1
+//        } else {
+//            dict[num] = 1
+//        }
+//    }
+//
+//    dict.map { (key, value) in
+//        if value > 1 {
+//            arr.append(key)
+//        }
+//        return arr
+//    }
+//
+//    print(dict)
+//    return Int()
+//}
+//
+//var nums = [1,2,3,1]
+//findMax(nums, 4)
+
+
+/// 26. Remove Duplicates from Sorted Array (solved)
+/// https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
+
+
+func removeDuplicates(_nums: [Int]) -> Int {
+    var i = 1
+    for j in 1..<nums.count {
+        if nums[j] != nums[j - 1] {
+            nums[i] = nums[j]
+            i += 1
         }
     }
-    
-    dict.map { (key, value) in
-        if value > 1 {
-            arr.append(key)
-        }
-        return arr
-    }
-    if 
-    
-    print(arr)
-    return Int()
+    return i
 }
 
-var nums = [1,2,3,1]
-findMax(nums, 4)
+var nums = [0,0,1,1,1,2,2,3,3,4]
+removeDuplicates(_nums: nums)
