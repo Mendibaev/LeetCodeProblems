@@ -274,16 +274,40 @@ import UIKit
 /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
 
 
-func removeDuplicates(_nums: [Int]) -> Int {
-    var i = 1
-    for j in 1..<nums.count {
-        if nums[j] != nums[j - 1] {
-            nums[i] = nums[j]
-            i += 1
-        }
-    }
-    return i
-}
+//func removeDuplicates(_nums: [Int]) -> Int {
+//    var i = 1
+//    for j in 1..<nums.count {
+//        if nums[j] != nums[j - 1] {
+//            nums[i] = nums[j]
+//            i += 1
+//        }
+//    }
+//    return i
+//}
+//
+//var nums = [0,0,1,1,1,2,2,3,3,4]
+//removeDuplicates(_nums: nums)
 
-var nums = [0,0,1,1,1,2,2,3,3,4]
-removeDuplicates(_nums: nums)
+
+/// 283. Move Zeroes
+/// https://leetcode.com/problems/move-zeroes/description/
+
+
+//func moveZeroes(_ nums: [Int]) {
+//    var nums = nums
+//    var i = 0
+//    var zeros = 0
+//    while i < nums.count - zeros {
+//        if nums[i] == 0 {
+//            nums.remove(at: i)
+//            nums.insert(0, at: nums.count)
+//            zeros += 1
+//        } else {
+//            i += 1
+//        }
+//    }
+//    print(nums)
+//}
+//
+//var nums = [0,1,0,3,12]
+//moveZeroes(nums)
